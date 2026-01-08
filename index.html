@@ -311,22 +311,20 @@
                 const radios = document.getElementsByName(`q${index}`);
                 let userAns = -1;
                 
-                // Encontrar resposta selecionada
                 for(let i=0; i<radios.length; i++) {
                     if(radios[i].checked) userAns = parseInt(radios[i].value);
-                    radios[i].disabled = true; // Desabilita mudança
+                    radios[i].disabled = true; 
                 }
 
                 const card = document.getElementById(`q-${index}`);
                 const correctLabel = document.getElementById(`lbl-${index}-${item.ans}`);
                 
-                // Lógica visual de certo/errado
                 if(userAns === item.ans) {
                     score++;
                     correctLabel.classList.add('correct');
                     card.innerHTML += `<p class="correct-text">✅ Boa, macaco!</p>`;
                 } else {
-                    correctLabel.classList.add('correct'); // Mostra qual era a certa
+                    correctLabel.classList.add('correct'); 
                     if(userAns !== -1) {
                         const wrongLabel = document.getElementById(`lbl-${index}-${userAns}`);
                         wrongLabel.classList.add('wrong');
@@ -335,19 +333,43 @@
                 }
             });
 
-            // Desativar botão
+            // --- AQUI COMEÇA A MÁGICA DO BANCO DE DADOS FAKE ---
+            
+            // 1. Tenta pegar o recorde antigo da memória do navegador
+            let recordeAtual = localStorage.getItem('macacoRecorde');
+            
+            // 2. Se não tiver recorde (primeira vez), define como 0
+            if (!recordeAtual) {
+                recordeAtual = 0;
+            }
+
+            // 3. Se a nota de agora for maior que o recorde, atualiza!
+            let msgRecorde = "";
+            if (score > recordeAtual) {
+                localStorage.setItem('macacoRecorde', score);
+                msgRecorde = "🏆 NOVO RECORDE PESSOAL! 🏆";
+                recordeAtual = score;
+            } else {
+                msgRecorde = `Seu recorde atual é: ${recordeAtual}`;
+            }
+
+            // --- FIM DA MÁGICA ---
+
             btn.disabled = true;
             btn.innerText = "Prova Entregue!";
 
-            // Mostrar resultado
             resultDiv.style.display = 'block';
             let msg = score > 7 ? "🐒 Você é o Rei da Selva!" : "🦍 Precisa comer mais bananas e estudar!";
-            resultDiv.innerHTML = `Nota: ${score}/10 <br> <span style="font-size: 1rem; font-weight: normal">${msg}</span>`;
+            
+            // Mostra a nota E o recorde
+            resultDiv.innerHTML = `
+                Nota: ${score}/10 <br>
+                <strong style="color: #f1c40f">${msgRecorde}</strong> <br>
+                <span style="font-size: 1rem; font-weight: normal">${msg}</span>
+            `;
         }
-
-        // Inicia o quiz ao carregar a página
-        window.onload = initQuiz;
     </script>
 </body>
 
 </html>
+
