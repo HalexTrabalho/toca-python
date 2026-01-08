@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Toca do Python - Programador Primata</title>
+    <style>
+        :root {
+            --jungle-dark: #1e272e;
+            --jungle-green: #2ecc71;
+            --banana-yellow: #f1c40f;
+            --snake-blue: #3498db;
+            --wood-brown: #d35400;
+            --text-light: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--jungle-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--jungle-green), #27ae60);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 5px solid var(--banana-yellow);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            margin: 2rem 0;
+            border: 4px solid var(--banana-yellow);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--snake-blue);
+        }
+
+        h2 {
+            color: var(--banana-yellow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: var(--jungle-green);
+            font-weight: bold;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li::before {
+            content: "🍌";
+            margin-right: 10px;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            background: #2c3e50;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid var(--wood-brown);
+        }
+
+        .question-card {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .options label {
+            display: block;
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .options label:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        #score-btn {
+            background-color: var(--wood-brown);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            transition: transform 0.2s, background 0.3s;
+            font-weight: bold;
+        }
+
+        #score-btn:hover {
+            transform: scale(1.05);
+            background-color: #e67e22;
+        }
+
+        #score-btn:disabled {
+            background-color: #7f8c8d;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-box {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+            display: none;
+        }
+
+        /* Feedback colors */
+        .correct {
+            border: 2px solid #2ecc71;
+            background-color: rgba(46, 204, 113, 0.2) !important;
+        }
+        .wrong {
+            border: 2px solid #e74c3c;
+            background-color: rgba(231, 76, 60, 0.2) !important;
+        }
+        .correct-text { color: #2ecc71; }
+        .wrong-text { color: #e74c3c; }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            header { padding: 1rem; }
+            section { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🐍 A Toca do Python</h1>
+        <div class="subtitle">Programação para Macacos Espertos</div>
+    </header>
+
+    <div class="container">
+        
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/H1ZnOoQ6I-U?si=PQ4b6gZNEsLAKkrV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <section>
+            <h2>🐒 Fala, Macacada!</h2>
+            <p>O <strong>Programador Primata</strong> desceu da árvore para te explicar: programar não precisa ser grego! Se você abre um código Java e vê aquele monte de chaves e pensa "eu sou um macaco, não um robô", calma. Existe uma salvação.</p>
+            <p>Apresento a vocês a <strong>Cobrinha (Python)</strong>. Enquanto o Java é aquele Gorila de Terno chato que exige burocracia pra tudo, o Python é o Macaco Zen.</p>
+        </section>
+
+        <section>
+            <h2>✨ Por que a Cobrinha é Top?</h2>
+            <ul>
+                <li><strong>Legibilidade:</strong> Parece inglês. Você lê <code>print("Olá Macaco")</code> e entende na hora. Sem chaves, sem ponto e vírgula pra todo lado.</li>
+                <li><strong>Indentação é Lei:</strong> No Python, a "bagunça" é proibida. A regra de ouro é a indentação (o espaçamento). Isso obriga o macaco a ser organizado desde o dia 1.</li>
+                <li><strong>Tipagem Dinâmica:</strong> Você joga uma banana na caixa (variável), depois joga um texto... o Python se vira e entende. Ele é inteligente!</li>
+                <li><strong>Batteries Included:</strong> É como ir acampar com uma mochila mágica. Já vem com barraca, isqueiro e comida. O Python traz bibliotecas prontas pra quase tudo!</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>🌍 Curiosidades da Selva (Extra!)</h2>
+            <p>Fizemos uma busca na floresta da internet e descobrimos coisas que nem o vídeo contou:</p>
+            <ul>
+                <li><strong>Não é a cobra:</strong> O nome vem do grupo de comédia britânico <em>Monty Python</em>, não do réptil! O criador, Guido van Rossum, era fã dos caras.</li>
+                <li><strong>O Zen do Python:</strong> Se você digitar <code>import this</code> no terminal, aparece um poema com a filosofia da linguagem.</li>
+                <li><strong>Quem usa?</strong> A NASA, o Google, a Netflix e até a Inteligência Artificial que vai dominar o mundo (mas que no fundo só quer descascar banana virtual).</li>
+            </ul>
+        </section>
+
+        <section class="quiz-container">
+            <h2>🏆 Quiz do Macaco Sábio</h2>
+            <p>Prove que você não é só um comedor de banana e acerte as perguntas abaixo!</p>
+            <div id="quiz-box">
+                </div>
+            <button id="score-btn" onclick="checkAnswers()">🍌 Calcular Pontuação</button>
+            <div id="result" class="result-box"></div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Desenvolvido com 💚 e 🍌 inspirado no vídeo do Programador Primata.</p>
+    </footer>
+
+    <script>
+        // Banco de dados de perguntas (Pool maior para permitir rotação)
+        const questionPool = [
+            { q: "Segundo o vídeo, quem é o 'Gorila de Terno'?", options: ["Python", "Java", "HTML", "Assembly"], ans: 1 },
+            { q: "Qual a 'Regra de Ouro' do Python mencionada?", options: ["Usar ponto e vírgula", "Indentação (espaçamento)", "Usar chaves {}", "Escrever tudo em maiúsculo"], ans: 1 },
+            { q: "O nome 'Python' foi inspirado em quê?", options: ["Uma cobra perigosa", "Um deus grego", "Grupo Monty Python", "Na selva amazônica"], ans: 2 },
+            { q: "O que significa 'Tipagem Dinâmica'?", options: ["O macaco precisa digitar rápido", "O Python adivinha o tipo da variável", "Você precisa declarar tudo", "Só aceita números"], ans: 1 },
+            { q: "Quem criou a linguagem Python?", options: ["Elon Musk", "Guido van Rossum", "Mark Zuckerberg", "Bill Gates"], ans: 1 },
+            { q: "O que acontece se você digitar 'import this' no Python?", options: ["O computador explode", "Instala um vírus", "Aparece o Zen of Python", "Abre o YouTube"], ans: 2 },
+            { q: "Segundo o vídeo, o Python é lento, mas economiza o quê?", options: ["Bateria", "Espaço em disco", "Tempo do programador", "Internet"], ans: 2 },
+            { q: "Qual biblioteca foi citada para Ciência de Dados?", options: ["Pandas", "GorillaJS", "BananaDB", "React"], ans: 0 },
+            { q: "A filosofia 'Batteries Included' significa que:", options: ["O Python gasta muita bateria", "Vem com ferramentas prontas (Bibliotecas)", "Precisa de pilhas AA", "Só roda em notebook"], ans: 1 },
+            { q: "Qual comando o macaco usa para mostrar algo na tela?", options: ["echo", "console.log", "print", "shout"], ans: 2 },
+            { q: "Python é uma linguagem de que nível?", options: ["Baixo nível (perto da máquina)", "Alto nível (perto do humano)", "Nível médio", "Nível Deus"], ans: 1 },
+            { q: "Para que serve o Django citado no vídeo?", options: ["Adestrar cobras", "Desenvolvimento Web", "Criar jogos 3D", "Editar vídeos"], ans: 1 },
+            { q: "Onde o Python NÃO é nativamente usado?", options: ["Frontend do Navegador", "Backend de Sites", "Inteligência Artificial", "Automação de Scripts"], ans: 0 },
+            { q: "Qual a extensão de um arquivo Python?", options: [".java", ".py", ".exe", ".macaco"], ans: 1 },
+            { q: "O Python é uma linguagem:", options: ["Compilada", "Interpretada", "Traduzida", "Desenhada"], ans: 1 },
+            { q: "Qual IDE foi recomendada para começar?", options: ["Bloco de Notas", "Word", "VS Code", "Paint"], ans: 2 }
+        ];
+
+        let selectedQuestions = [];
+
+        function initQuiz() {
+            const quizBox = document.getElementById('quiz-box');
+            quizBox.innerHTML = ''; // Limpa
+            
+            // Embaralha o pool inteiro e pega as 10 primeiras
+            // Isso garante que ~40% ou mais sejam diferentes a cada reload estatisticamente
+            const shuffled = [...questionPool].sort(() => 0.5 - Math.random());
+            selectedQuestions = shuffled.slice(0, 10);
+
+            selectedQuestions.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.id = `q-${index}`;
+
+                let optionsHtml = '';
+                item.options.forEach((opt, optIndex) => {
+                    optionsHtml += `
+                        <label id="lbl-${index}-${optIndex}">
+                            <input type="radio" name="q${index}" value="${optIndex}">
+                            ${opt}
+                        </label>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <p><strong>${index + 1}. ${item.q}</strong></p>
+                    <div class="options">${optionsHtml}</div>
+                `;
+                quizBox.appendChild(card);
+            });
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            const btn = document.getElementById('score-btn');
+            const resultDiv = document.getElementById('result');
+
+            selectedQuestions.forEach((item, index) => {
+                const radios = document.getElementsByName(`q${index}`);
+                let userAns = -1;
+                
+                // Encontrar resposta selecionada
+                for(let i=0; i<radios.length; i++) {
+                    if(radios[i].checked) userAns = parseInt(radios[i].value);
+                    radios[i].disabled = true; // Desabilita mudança
+                }
+
+                const card = document.getElementById(`q-${index}`);
+                const correctLabel = document.getElementById(`lbl-${index}-${item.ans}`);
+                
+                // Lógica visual de certo/errado
+                if(userAns === item.ans) {
+                    score++;
+                    correctLabel.classList.add('correct');
+                    card.innerHTML += `<p class="correct-text">✅ Boa, macaco!</p>`;
+                } else {
+                    correctLabel.classList.add('correct'); // Mostra qual era a certa
+                    if(userAns !== -1) {
+                        const wrongLabel = document.getElementById(`lbl-${index}-${userAns}`);
+                        wrongLabel.classList.add('wrong');
+                    }
+                    card.innerHTML += `<p class="wrong-text">❌ Errou! A certa era a verde.</p>`;
+                }
+            });
+
+            // Desativar botão
+            btn.disabled = true;
+            btn.innerText = "Prova Entregue!";
+
+            // Mostrar resultado
+            resultDiv.style.display = 'block';
+            let msg = score > 7 ? "🐒 Você é o Rei da Selva!" : "🦍 Precisa comer mais bananas e estudar!";
+            resultDiv.innerHTML = `Nota: ${score}/10 <br> <span style="font-size: 1rem; font-weight: normal">${msg}</span>`;
+        }
+
+        // Inicia o quiz ao carregar a página
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
