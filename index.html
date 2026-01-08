@@ -350,7 +350,15 @@
             btn.innerText = "Prova Entregue!";
 
             resultDiv.style.display = 'block';
-            let msg = score > 7 ? "🐒 Você é o Rei da Selva!" : "🦍 Precisa comer mais bananas e estudar!";
+           let msg = "";
+            
+            if (score > 7) {
+                msg = "🐒 Você é o Rei da Selva!";
+            } else if (score < 5) {
+                msg = "🦍 Precisa comer mais bananas e estudar!";
+            } else {
+                msg = "🍌 Falta pouco, coma mais bananas!";
+            }
             
             resultDiv.innerHTML = `
                 Nota: ${score}/10 <br>
@@ -366,6 +374,7 @@
 </body>
 
 </html>
+
 
 
 
