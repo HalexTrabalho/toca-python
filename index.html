@@ -248,7 +248,7 @@
     </footer>
 
     <script>
-        // Banco de dados de perguntas (Pool maior para permitir rotação)
+        // Banco de dados de perguntas
         const questionPool = [
             { q: "Segundo o vídeo, quem é o 'Gorila de Terno'?", options: ["Python", "Java", "HTML", "Assembly"], ans: 1 },
             { q: "Qual a 'Regra de Ouro' do Python mencionada?", options: ["Usar ponto e vírgula", "Indentação (espaçamento)", "Usar chaves {}", "Escrever tudo em maiúsculo"], ans: 1 },
@@ -275,7 +275,6 @@
             quizBox.innerHTML = ''; // Limpa
             
             // Embaralha o pool inteiro e pega as 10 primeiras
-            // Isso garante que ~40% ou mais sejam diferentes a cada reload estatisticamente
             const shuffled = [...questionPool].sort(() => 0.5 - Math.random());
             selectedQuestions = shuffled.slice(0, 10);
 
@@ -333,17 +332,10 @@
                 }
             });
 
-            // --- AQUI COMEÇA A MÁGICA DO BANCO DE DADOS FAKE ---
-            
-            // 1. Tenta pegar o recorde antigo da memória do navegador
+            // --- Lógica do Recorde (localStorage) ---
             let recordeAtual = localStorage.getItem('macacoRecorde');
-            
-            // 2. Se não tiver recorde (primeira vez), define como 0
-            if (!recordeAtual) {
-                recordeAtual = 0;
-            }
+            if (!recordeAtual) recordeAtual = 0;
 
-            // 3. Se a nota de agora for maior que o recorde, atualiza!
             let msgRecorde = "";
             if (score > recordeAtual) {
                 localStorage.setItem('macacoRecorde', score);
@@ -353,23 +345,25 @@
                 msgRecorde = `Seu recorde atual é: ${recordeAtual}`;
             }
 
-            // --- FIM DA MÁGICA ---
-
             btn.disabled = true;
             btn.innerText = "Prova Entregue!";
 
             resultDiv.style.display = 'block';
             let msg = score > 7 ? "🐒 Você é o Rei da Selva!" : "🦍 Precisa comer mais bananas e estudar!";
             
-            // Mostra a nota E o recorde
             resultDiv.innerHTML = `
                 Nota: ${score}/10 <br>
                 <strong style="color: #f1c40f">${msgRecorde}</strong> <br>
                 <span style="font-size: 1rem; font-weight: normal">${msg}</span>
             `;
         }
+
+        // Inicia o quiz ao carregar a página
+        window.onload = initQuiz;
     </script>
+    
 </body>
 
 </html>
+
 
