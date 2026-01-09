@@ -227,6 +227,11 @@
                 <li><strong>Indentação é Lei:</strong> No Python, a "bagunça" é proibida. A regra de ouro é a indentação (o espaçamento). Isso obriga o macaco a ser organizado desde o dia 1.</li>
                 <li><strong>Tipagem Dinâmica:</strong> Você joga uma banana na caixa (variável), depois joga um texto... o Python se vira e entende. Ele é inteligente!</li>
                 <li><strong>Batteries Included:</strong> É como ir acampar com uma mochila mágica. Já vem com barraca, isqueiro e comida. O Python traz bibliotecas prontas pra quase tudo!</li>
+                Para entender por que o Python é tão versátil, precisamos olhar para suas entranhas técnicas:<br>
+                <li><strong>Linguagem Interpretada</strong>: O código Python não é convertido diretamente em código de máquina (binário) antes da execução. Ele é compilado para um bytecode, que é então executado pela Máquina Virtual Python (PVM)</li>
+                <li><strong>Tipagem Dinâmica e Forte</strong>: Você não precisa declarar que uma variável é um "número" ou "texto" (dinâmica), mas a linguagem não permite operações ilógicas, como somar um número a um texto sem conversão explícita (forte)</li>
+                <li><strong>Gerenciamento de Memória Automático</strong>: Possui um Garbage Collector (coletor de lixo) que libera memória automaticamente, evitando os temidos "leaks" de memória que assombram programadores C</li>
+                <li><strong>O GIL (Global Interpreter Lock)</strong>: Este é um detalhe técnico profundo. O GIL é um mecanismo que permite que apenas uma thread execute o bytecode Python por vez. Isso simplifica a gestão de memória, mas torna o uso de múltiplos núcleos de CPU em um único processo um desafio para tarefas pesadas de computação</li>
             </ul>
         </section>
 
@@ -381,6 +386,7 @@
 </body>
 
 </html>
+
 
 
 
