@@ -256,35 +256,35 @@
                 <p>1. Pandas: Para manipulação e limpeza dos dados.</p>
                 <p>2. Matplotlib/Seaborn: Para a criação de visualizações gráficas</p>
                 <p>O Código de Exemplo:</p>
-                import pandas as pd<br>
-                import numpy as np<br>
-                import matplotlib.pyplot as plt<br>
-                import seaborn as sns<br><br>
+                <font color="purple">import</font> pandas <font color="purple">as</font> pd<br>
+                <font color="purple">import</font> numpy <font color="purple">as</font> np<br>
+                <font color="purple">import</font> matplotlib.pyplot <font color="purple">as</font> plt<br>
+                <font color="purple">import</font> seaborn <font color="purple">as</font> sns<br><br>
                 
-                # 1. Criando um conjunto de dados fictício (100 dias de vendas)<br>
-                np.random.seed(42)<br>
-                dias = pd.date_range(start='2023-01-01', periods=100)<br>
-                categorias = ['Eletrônicos', 'Vestuário', 'Alimentos', 'Livros']<br>
-                vendas = np.random.randint(100, 1000, size=100)<br>
-                categorias_venda = np.random.choice(categorias, size=100)<br><br>
+                <font color="silver"># 1. Criando um conjunto de dados fictício (100 dias de vendas)</font><br>
+                np.random.seed(<font color="orange">42</font>)<br>
+                dias = pd.date_range(start='<font color="green">2023-01-01</font>', periods=<font color="orange">100</font>)<br>
+                categorias = ['<font color="green">Eletrônicos</font>', '<font color="green">Vestuário</font>', '<font color="green">Alimentos</font>', '<font color="green">Livros</font>']<br>
+                vendas = np.random.randint(<font color="orange">100</font>, <font color="orange">1000</font>, size=<font color="orange">100</font>)<br>
+                categorias_venda = np.random.choice(categorias, size=<font color="orange">100</font>)<br><br>
 
                 df = pd.DataFrame({<br>
-                    'Data': dias,<br>
-                    'Categoria': categorias_venda,<br>
-                    'Vendas_R$': vendas<br>
+                    '<font color="green">Data</font></ul>': dias,<br>
+                    '<font color="green">Categoria': categorias_venda,<br>
+                    '<font color="green">Vendas_R$</font>': vendas<br>
                 })<br><br>
                 
-                # 2. Análise de Dados<br>
-                # Calculando o total vendido por categoria<br>
-                vendas_por_categoria = df.groupby('Categoria')['Vendas_R$'].sum().sort_values(ascending=False)<br>
+                <font color="silver"># 2. Análise de Dados<br>
+                # Calculando o total vendido por categoria</font><br>
+                vendas_por_categoria = df.groupby('<font color="green">Categoria</font>')['<font color="green">Vendas_R$</font>'].sum().sort_values(ascending=False)<br><br>
                 
-                <p># 3. Visualização dos Resultados</p>
-                <p>plt.figure(figsize=(10, 6))</p>
-                <p>sns.barplot(x=vendas_por_categoria.index, y=vendas_por_categoria.values, palette='viridis')</p>
-                <p>plt.title('Total de Vendas por Categoria')</p>
-                <p>plt.xlabel('Categoria')</p>
-                <p>plt.ylabel('Total em Vendas (R$)')</p>
-                <p>plt.savefig('vendas_por_categoria.png') # Salva o gráfico como imagem</p><br>
+                <font color="silver"># 3. Visualização dos Resultados</font><br>
+                plt.figure(figsize=(<font color="orange">10</font>, <font color="orange">6</font>))<br>
+                sns.barplot(x=vendas_por_categoria.index, y=vendas_por_categoria.values, palette='<font color="green">viridis</font>')<br>
+                plt.title('<font color="green">Total de Vendas por Categoria</font>')<br>
+                plt.xlabel('<font color="green">Categoria</font>')<br>
+                plt.ylabel('<font color="green">Total em Vendas (R$)</font>')<br>
+                plt.savefig('<font color="green">vendas_por_categoria.png</font>') <font color="silver"># Salva o gráfico como imagem</font><br><br>
                 <p>O que este script nos diz?</p>
                 <p>Com apenas algumas linhas de código, conseguimos processar informações que levariam muito tempo para serem organizadas manualmente</p>
                 <p>1. <strong>Resumo Estatístico</strong>: O Python calculou automaticamente que a média de vendas diárias foi de aproximadamente <strong>R$ 538,40</strong>, com a venda máxima chegando a <strong>R$ 997,00</strong></p>
@@ -435,6 +435,7 @@
 </body>
 
 </html>
+
 
 
 
