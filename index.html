@@ -256,27 +256,27 @@
                 <p>1. Pandas: Para manipulação e limpeza dos dados.</p>
                 <p>2. Matplotlib/Seaborn: Para a criação de visualizações gráficas</p>
                 <p>O Código de Exemplo:</p>
-                <p>import pandas as pd</p>
-                <p>import numpy as np</p>
-                <p>import matplotlib.pyplot as plt</p>
-                <p>import seaborn as sns</p><br>
+                import pandas as pd<br>
+                import numpy as np<br>
+                import matplotlib.pyplot as plt<br>
+                import seaborn as sns<br><br>
                 
-                <p># 1. Criando um conjunto de dados fictício (100 dias de vendas)</p>
-                <p>np.random.seed(42)</p>
-                <p>dias = pd.date_range(start='2023-01-01', periods=100)</p>
-                <p>categorias = ['Eletrônicos', 'Vestuário', 'Alimentos', 'Livros']</p>
-                <p>vendas = np.random.randint(100, 1000, size=100)</p>
-                <p>categorias_venda = np.random.choice(categorias, size=100)</p><br>
+                # 1. Criando um conjunto de dados fictício (100 dias de vendas)<br>
+                np.random.seed(42)<br>
+                dias = pd.date_range(start='2023-01-01', periods=100)<br>
+                categorias = ['Eletrônicos', 'Vestuário', 'Alimentos', 'Livros']<br>
+                vendas = np.random.randint(100, 1000, size=100)<br>
+                categorias_venda = np.random.choice(categorias, size=100)<br><br>
 
-                <p>df = pd.DataFrame({</p>
-                <p>    'Data': dias,</p>
-                <p>    'Categoria': categorias_venda,</p>
-                <p>    'Vendas_R$': vendas</p>
-                <p>})</p><br>
+                df = pd.DataFrame({<br>
+                    'Data': dias,<br>
+                    'Categoria': categorias_venda,<br>
+                    'Vendas_R$': vendas<br>
+                })<br><br>
                 
-                <p># 2. Análise de Dados</p>
-                <p># Calculando o total vendido por categoria</p>
-                <p>vendas_por_categoria = df.groupby('Categoria')['Vendas_R$'].sum().sort_values(ascending=False)</p><br>
+                # 2. Análise de Dados<br>
+                # Calculando o total vendido por categoria<br>
+                vendas_por_categoria = df.groupby('Categoria')['Vendas_R$'].sum().sort_values(ascending=False)<br>
                 
                 <p># 3. Visualização dos Resultados</p>
                 <p>plt.figure(figsize=(10, 6))</p>
@@ -435,6 +435,7 @@
 </body>
 
 </html>
+
 
 
 
